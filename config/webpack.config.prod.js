@@ -299,10 +299,10 @@ module.exports = {
                   },
                 ],
                 [
-                  'import',[{
+                  'import',{
                     libraryName: 'antd',
                     style: true
-                  }]
+                  }
                 ]
               ],
               cacheDirectory: true,
