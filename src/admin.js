@@ -1,13 +1,17 @@
 import React, { Component } from 'react'
 
+import { Row, Col } from 'antd'
+
 class Admin extends Component {
   constructor(props) {
     super();
   }
   render() {
     return (
-      <div className="">
-      </div>
+      <Row>
+        <Col span={3}>left</Col>
+        <Col span={21}>right</Col>
+      </Row>
     );
   }
 }
