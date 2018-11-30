@@ -13,11 +13,11 @@ class Admin extends Component {
   }
   render() {
     return (
-      <Row className='container'>
+      <Row className='container df'>
         <Col span={3} className='nav-left'>
           <NavLeft />
         </Col>
-        <Col span={21} className='main'>
+        <Col span={21} className='main flex-1'>
           <Header />
           <Row className='content'>content</Row>
           <Footer />

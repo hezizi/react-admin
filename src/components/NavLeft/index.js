@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-import { Menu, Icon } from 'antd'
+import { Menu } from 'antd'
 import MenuConfig from '../../config/menuConfig'
 import './index.less'
 
@@ -20,7 +20,6 @@ class NavLeft extends Component {
 
   // 菜单渲染
   renderMenu = (data) => {
-    console.log(data)
     return data.map((item) => {
       if (item.children) {
         return (
@@ -39,6 +38,7 @@ class NavLeft extends Component {
 
   render() {
     const { menuTreeNode } = this.state;
+    console.log(menuTreeNode)
     return (
       <div>
         <div className='logo df-jcc df-aic'>
