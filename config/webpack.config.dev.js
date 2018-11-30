@@ -331,6 +331,9 @@ module.exports = {
                 importLoaders: 3,
                 modules: true,
                 getLocalIdent: getCSSModuleLocalIdent,
+                modifyVars: {
+                  'primary-color': '#f9c700'
+                }
               },
               'less-loader'
             ),
