@@ -4,6 +4,7 @@ import { Row, Col } from 'antd'
 
 import './index.less'
 import Utils from '../../utils/utils'
+import Axios from '../../axios/index'
 
 class Header extends Component {
   constructor(props) {
@@ -21,6 +22,16 @@ class Header extends Component {
         sysTime
       })
     }, 1000)
+  }
+
+  componentDidMount() {
+    this.getWeatherApiData()
+  }
+
+  getWeatherApiData() {
+    Axios.jsonp({
+      url: ''
+    })
   }
 
   render() {
