@@ -28,9 +28,13 @@ class Header extends Component {
     this.getWeatherApiData()
   }
 
+  
   getWeatherApiData() {
+    let city = '武汉'
     Axios.jsonp({
-      url: ''
+      url: `https://restapi.amap.com/v3/weather/weatherInfo?key=408bf4dd3a0c33618561511b3985e9ca&city=${encodeURIComponent(city)}`
+    }).then((res) => {
+      console.log(res)
     })
   }
 

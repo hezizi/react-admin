@@ -38,7 +38,6 @@ class NavLeft extends Component {
 
   render() {
     const { menuTreeNode } = this.state;
-    console.log(menuTreeNode)
     return (
       <div>
         <div className='logo df-jcc df-aic'>
