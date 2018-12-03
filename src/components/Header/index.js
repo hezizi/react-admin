@@ -49,7 +49,6 @@ class Header extends Component {
 
   render() {
     const { userName, sysTime, weatherInfo } = this.state;
-    console.log(weatherInfo)
     return (
       <div className="header">
         <Row className='header-top'>
