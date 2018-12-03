@@ -11,7 +11,11 @@ class Header extends Component {
     super();
     this.state = {
       userName: 'yucihent',
-      sysTime: ''
+      sysTime: '',
+      weatherInfo: {
+        weather: '',
+        winddirection: ''
+      }
     }
   }
 
@@ -28,18 +32,24 @@ class Header extends Component {
     this.getWeatherApiData()
   }
 
-  
   getWeatherApiData() {
     let city = '武汉'
     Axios.jsonp({
       url: `https://restapi.amap.com/v3/weather/weatherInfo?key=408bf4dd3a0c33618561511b3985e9ca&city=${encodeURIComponent(city)}`
     }).then((res) => {
-      console.log(res)
+      let data = res.lives[0]
+      this.setState({
+        weatherInfo: {
+          weather: data.weather,
+          winddirection: data.winddirection
+        }
+      })
     })
   }
 
   render() {
-    const { userName, sysTime } = this.state;
+    const { userName, sysTime, weatherInfo } = this.state;
+    console.log(weatherInfo)
     return (
       <div className="header">
         <Row className='header-top'>
@@ -54,7 +64,7 @@ class Header extends Component {
           </Col>
           <Col span={20} className='date ar'>
             <span className='date-detail'>{sysTime}</span>
-            <span className='weather'>晴天</span>
+            <span className='weather'>{weatherInfo.weather} 风向: {weatherInfo.winddirection}</span>
           </Col>
         </Row>
       </div>
