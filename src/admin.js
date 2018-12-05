@@ -5,6 +5,7 @@ import { Row, Col } from 'antd'
 import Header from './components/Header/index'
 import Footer from './components/Footer/index'
 import NavLeft from './components/NavLeft/index'
+import HomeIndex from './pages/Home/index'
 import './style/common.less'
 
 class Admin extends Component {
@@ -19,7 +20,9 @@ class Admin extends Component {
         </Col>
         <Col span={21} className='main flex-1'>
           <Header />
-          <Row className='content'>content</Row>
+          <Row className='content'>
+            <HomeIndex />
+          </Row>
           <Footer />
         </Col>
       </Row>
