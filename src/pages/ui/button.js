@@ -1,16 +1,16 @@
 import React, { Component } from 'react'
 
-class Detail extends Component {
+class Button extends Component {
   constructor(props) {
     super();
   }
   render() {
     return (
-      <div className="App">
-        Detail
+      <div className="">
+        button
       </div>
     );
   }
 }
 
-export default Detail
+export default Button

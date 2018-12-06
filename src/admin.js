@@ -5,7 +5,7 @@ import { Row, Col } from 'antd'
 import Header from './components/Header/index'
 import Footer from './components/Footer/index'
 import NavLeft from './components/NavLeft/index'
-import HomeIndex from './pages/Home/index'
+import HomeIndex from './pages/home/index'
 import './style/common.less'
 
 class Admin extends Component {
@@ -14,13 +14,13 @@ class Admin extends Component {
   }
   render() {
     return (
-      <Row className='container df'>
-        <Col span={3} className='nav-left'>
+      <Row className="container df">
+        <Col span={3} className="nav-left">
           <NavLeft />
         </Col>
-        <Col span={21} className='main flex-1'>
+        <Col span={21} className="main flex-1">
           <Header />
-          <Row className='content'>
+          <Row className="content">
             <HomeIndex />
           </Row>
           <Footer />
