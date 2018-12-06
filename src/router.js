@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import { HashRouter, Switch, Route } from 'react-router-dom'
 
-import App from './App'
-import Admin from './Admin'
+import App from './app'
+import Admin from './admin'
 import Login from './pages/login/index'
 import Buttons from './pages/ui/buttons'
 import NoMatch from './pages/nomatch/index'
