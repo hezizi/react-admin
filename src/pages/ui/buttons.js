@@ -7,7 +7,17 @@ import './ui.less'
 class Buttons extends Component {
   constructor(props) {
     super();
+    this.state = {
+      loading: true
+    }
   }
+
+  handleCloseLoading = () => {
+    this.setState({
+      loading: false
+    })
+  }
+
   render() {
     return (
       <div className="">
@@ -27,11 +37,10 @@ class Buttons extends Component {
           <Button type="primary" icon="download">下载</Button>
         </Card>
         <Card title="Loading按钮">
-          <Button type="dashed" loading={true}>创建</Button>
-          <Button type="dashed" icon="edit" loading={true}>编辑</Button>
-          <Button type="primary" icon="delete" loading={true}>删除</Button>
-          <Button icon="search">搜索</Button>
-          <Button type="primary" icon="download" loading={true}>下载</Button>
+          <Button type="dashed" loading={this.state.loading}>创建</Button>
+          <Button type="dashed" loading={this.state.loading}>编辑</Button>
+          <Button type="primary" loading={this.state.loading}>删除</Button>\
+          <Button type="primary" onClick={this.handleCloseLoading}>关闭</Button>
         </Card>
       </div>
     );
