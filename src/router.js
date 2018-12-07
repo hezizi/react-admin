@@ -5,6 +5,7 @@ import App from './app'
 import Admin from './admin'
 import Login from './pages/login/index'
 import Buttons from './pages/ui/buttons'
+import Modals from './pages/ui/modals'
 import NoMatch from './pages/nomatch/index'
 
 class Router extends Component {
@@ -20,6 +21,7 @@ class Router extends Component {
             <Route path='/admin' render={() => (
               <Admin>
                 <Route path='/admin/ui/buttons' component={Buttons} />
+                <Route path='/admin/ui/modals' component={Modals} />
               </Admin>
             )} />
             <Route component={NoMatch} />
