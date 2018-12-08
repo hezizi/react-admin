@@ -21,7 +21,6 @@ class Messages extends Component {
           <Button type="primary" onClick={() => this.openMsg('info')}>Info</Button>
           <Button type="primary" onClick={() => this.openMsg('warning')}>Warning</Button>
           <Button type="primary" onClick={() => this.openMsg('error')}>Error</Button>
-          <Button type="primary" onClick={() => this.openMsg('loading')}>Loading</Button>
         </Card>
       </div>
     );

@@ -9,6 +9,9 @@ import Modals from './pages/ui/modals'
 import Loadings from './pages/ui/loadings'
 import Notifications from './pages/ui/notifications'
 import Messages from './pages/ui/messages'
+import Tab from './pages/ui/tabs'
+import Carousels from './pages/ui/carousels'
+import FormLogin from './pages/form/login'
 import NoMatch from './pages/nomatch/index'
 
 class Router extends Component {
@@ -28,6 +31,9 @@ class Router extends Component {
                 <Route path='/admin/ui/loadings' component={Loadings} />
                 <Route path='/admin/ui/notifications' component={Notifications} />
                 <Route path='/admin/ui/messages' component={Messages} />
+                <Route path='/admin/ui/tabs' component={Tab} />
+                <Route path='/admin/ui/carousels' component={Carousels} />
+                <Route path='/admin/form/login' component={FormLogin} />
               </Admin>
             )} />
             <Route component={NoMatch} />
