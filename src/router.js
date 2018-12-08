@@ -7,6 +7,8 @@ import Login from './pages/login/index'
 import Buttons from './pages/ui/buttons'
 import Modals from './pages/ui/modals'
 import Loadings from './pages/ui/loadings'
+import Notifications from './pages/ui/notifications'
+import Messages from './pages/ui/messages'
 import NoMatch from './pages/nomatch/index'
 
 class Router extends Component {
@@ -24,6 +26,8 @@ class Router extends Component {
                 <Route path='/admin/ui/buttons' component={Buttons} />
                 <Route path='/admin/ui/modals' component={Modals} />
                 <Route path='/admin/ui/loadings' component={Loadings} />
+                <Route path='/admin/ui/notifications' component={Notifications} />
+                <Route path='/admin/ui/messages' component={Messages} />
               </Admin>
             )} />
             <Route component={NoMatch} />
