@@ -2,17 +2,17 @@ import React, { Component } from 'react'
 
 import { Card, Form, Icon, Input, Button, Checkbox, message } from 'antd'
 
-const { FormItem } = Form;
+const FormItem = Form.Item;
 
 class FormLogin extends Component {
   constructor(props) {
     super();
   }
 
-  componentDidMount() {
-    // To disabled submit button at the beginning.
-    this.props.form.validateFields();
-  }
+  // componentDidMount() {
+  //   // To disabled submit button at the beginning.
+  //   this.props.form.validateFields();
+  // }
 
   handleSubmit = (e) => {
     e.preventDefault();
@@ -41,7 +41,7 @@ class FormLogin extends Component {
             </FormItem>
           </Form>
         </Card>
-        <Card title="登录水平表单" style={{ marginTop: 10 }}>
+        <Card title="登录水平表单">
           <Form style={{ width: 300 }}>
             <FormItem>
               {
@@ -70,7 +70,12 @@ class FormLogin extends Component {
               {
                 getFieldDecorator('userPwd', {
                   initialValue: '',
-                  rules: []
+                  rules: [
+                    {
+                      required: true,
+                      message: '密码不能为空'
+                    }
+                  ]
                 })(
                   <Input prefix={<Icon type="lock" />} type="password" placeholder="请输入密码" />
                 )
@@ -85,7 +90,7 @@ class FormLogin extends Component {
                   <Checkbox>记住密码</Checkbox>
                 )
               }
-              <a href="#" style={{ float: 'right' }}>忘记密码</a>
+              <a className="fr" href="#">忘记密码</a>
             </FormItem>
             <FormItem>
               <Button type="primary" onClick={this.handleSubmit}>登录</Button>
