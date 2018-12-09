@@ -12,6 +12,7 @@ import Messages from './pages/ui/messages'
 import Tab from './pages/ui/tabs'
 import Carousels from './pages/ui/carousels'
 import FormLogin from './pages/form/login'
+import FormRegister from './pages/form/register'
 import NoMatch from './pages/nomatch/index'
 
 class Router extends Component {
@@ -34,6 +35,7 @@ class Router extends Component {
                 <Route path='/admin/ui/tabs' component={Tab} />
                 <Route path='/admin/ui/carousels' component={Carousels} />
                 <Route path='/admin/form/login' component={FormLogin} />
+                <Route path='/admin/form/register' component={FormRegister} />
               </Admin>
             )} />
             <Route component={NoMatch} />
