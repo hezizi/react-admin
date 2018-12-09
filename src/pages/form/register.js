@@ -13,19 +13,44 @@ import {
   TimePicker,
   Upload,
   Icon,
+  Modal,
   message,
   InputNumber
 } from 'antd'
 import moment from 'moment'
 
+import './form.less'
+
 const FormItem = Form.Item;
 const RadioGroup = Radio.Group;
 const Option = Select.Option;
+const TextArea = Input.TextArea;
 
 class FormRegister extends Component {
   constructor(props) {
     super();
+    this.state = {
+      previewVisible: false,
+      previewImage: '',
+      fileList: [{
+        uid: '-1',
+        name: 'xxx.png',
+        status: 'done',
+        url: 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
+      }],
+    }
   }
+
+  handleCancel = () => this.setState({ previewVisible: false })
+
+  handlePreview = (file) => {
+    this.setState({
+      previewImage: file.url || file.thumbUrl,
+      previewVisible: true,
+    });
+  }
+
+  handleChange = ({ fileList }) => this.setState({ fileList })
 
   render() {
     const { getFieldDecorator } = this.props.form;
@@ -39,17 +64,15 @@ class FormRegister extends Component {
         sm: 12
       }
     }
-    const offsetLayout = {
-      wrapperCol: {
-        xs: 24,
-        sm: {
-          span: 12,
-          offset: 4
-        }
-      }
-    }
+    const { previewVisible, previewImage, fileList } = this.state;
+    const uploadButton = (
+      <div>
+        <Icon type="plus" />
+        <div className="ant-upload-text">Upload</div>
+      </div>
+    );
     return (
-      <div className="">
+      <div className="clearfix">
         <Card title="注册表单">
           <Form layout="horizontal">
             <FormItem label="用户名" {...formItemLayout}>
@@ -152,9 +175,34 @@ class FormRegister extends Component {
                 getFieldDecorator('address', {
                   initialValue: '湖北省武汉市江夏区'
                 })(
-                  <DatePicker />
+                  <TextArea />
                 )
               }
+            </FormItem>
+            <FormItem label="早起时间" {...formItemLayout}>
+              {
+                getFieldDecorator('time')(
+                  <TimePicker />
+                )
+              }
+            </FormItem>
+            <FormItem label="上传头像" {...formItemLayout}>
+              {
+                getFieldDecorator('uploadImg')(
+                  <Upload
+                    action="//jsonplaceholder.typicode.com/posts/"
+                    listType="picture-card"
+                    fileList={fileList}
+                    onPreview={this.handlePreview}
+                    onChange={this.handleChange}
+                  >
+                    {fileList.length >= 3 ? null : uploadButton}
+                  </Upload>
+                )
+              }
+              <Modal title="查看图片" visible={previewVisible} footer={null} onCancel={this.handleCancel}>
+                <img alt="example" style={{ width: '100%' }} src={previewImage} />
+              </Modal>
             </FormItem>
           </Form>
         </Card>
