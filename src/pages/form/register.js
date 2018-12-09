@@ -39,18 +39,24 @@ class FormRegister extends Component {
         url: 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png',
       }],
     }
-  }
+  };
 
-  handleCancel = () => this.setState({ previewVisible: false })
+  handleCancel = () => this.setState({ previewVisible: false });
 
   handlePreview = (file) => {
     this.setState({
       previewImage: file.url || file.thumbUrl,
       previewVisible: true,
     });
-  }
+  };
 
-  handleChange = ({ fileList }) => this.setState({ fileList })
+  handleChange = ({ fileList }) => this.setState({ fileList });
+
+  handleSubmit = (e) => {
+    e.preventDefault();
+    let userInfo = this.props.form.getFieldsValue();
+    console.log(userInfo);
+  };
 
   render() {
     const { getFieldDecorator } = this.props.form;
@@ -62,6 +68,15 @@ class FormRegister extends Component {
       wrapperCol: {
         xs: 24,
         sm: 12
+      }
+    }
+    const offsetLayout = {
+      wrapperCol: {
+        xs: 24,
+        sm: {
+          span: 12,
+          offset: 4
+        }
       }
     }
     const { previewVisible, previewImage, fileList } = this.state;
@@ -99,7 +114,7 @@ class FormRegister extends Component {
                       message: '密码不能为空'
                     }
                   ]
-                })(<Input placeholder="请输入密码" />)
+                })(<Input type="password" placeholder="请输入密码" />)
               }
             </FormItem>
             <FormItem label="性别" {...formItemLayout}>
@@ -203,6 +218,16 @@ class FormRegister extends Component {
               <Modal title="查看图片" visible={previewVisible} footer={null} onCancel={this.handleCancel}>
                 <img alt="example" style={{ width: '100%' }} src={previewImage} />
               </Modal>
+            </FormItem>
+            <FormItem {...offsetLayout}>
+              {
+                getFieldDecorator('time')(
+                  <Checkbox>我已阅读过<a href="#">xx协议</a></Checkbox>
+                )
+              }
+            </FormItem>
+            <FormItem {...offsetLayout}>
+              <Button type="primary" onClick={this.handleSubmit}>注册</Button>
             </FormItem>
           </Form>
         </Card>
