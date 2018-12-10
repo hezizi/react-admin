@@ -32,7 +32,6 @@ class BasicTable extends Component {
   //       }
   //     })
   // }
-
   dataRequest = () => {
     axios.ajax({
       url: '/table/list',
@@ -43,7 +42,7 @@ class BasicTable extends Component {
       }
     }).then(res => {
       this.setState({
-        dataSourceAjax: res
+        dataSourceAjax: res.result
       })
     })
   }

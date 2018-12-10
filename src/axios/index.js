@@ -28,11 +28,11 @@ export default class Axios {
         baseURL: baseApi,
         params: (options.data && options.data.params) || ''
       }).then(response => {
-        console.log(response)
+        console.log(response);
         if (response.status === 200) {
           let res = response.data;
           if (res.code === 0) {
-            resolve(res.result);
+            resolve(res);
           } else {
             Modal.info({
               title:"提示",
@@ -40,7 +40,7 @@ export default class Axios {
             })
           }
         } else {
-          reject(response.data)
+          reject(response.data);
         }
       })
     })
