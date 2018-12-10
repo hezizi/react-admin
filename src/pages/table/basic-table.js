@@ -1,9 +1,13 @@
 import React, { Component } from 'react'
 
 import { Card, Table } from 'antd'
-import axios from 'axios'
+import axios from '../../axios/index'
 
 class BasicTable extends Component {
+  params = {
+    page:1
+  }
+
   constructor(props) {
     super();
     this.state = {
@@ -17,16 +21,31 @@ class BasicTable extends Component {
 
   /* 动态数据渲染表格-Mock */
   // 动态获取mock数据
+  // dataRequest = () => {
+  //   const baseUrl = 'https://www.easy-mock.com/mock/5c0e5bb5dbf7436640a68ddf/mockapi';
+  //   axios.get(`${baseUrl}/table/list`)
+  //     .then(res => {
+  //       if (res.status === 200 && res.data.code === 0) {
+  //         this.setState({
+  //           dataSourceAjax: res.data.result
+  //         })
+  //       }
+  //     })
+  // }
+
   dataRequest = () => {
-    const baseUrl = 'https://www.easy-mock.com/mock/5c0e5bb5dbf7436640a68ddf/mockapi';
-    axios.get(`${baseUrl}/table/list`)
-      .then(res => {
-        if (res.status === 200 && res.data.code === 0) {
-          this.setState({
-            dataSourceAjax: res.data.result
-          })
+    axios.ajax({
+      url: '/table/list',
+      data: {
+        params:{
+          page:this.params.page
         }
+      }
+    }).then(res => {
+      this.setState({
+        dataSourceAjax: res
       })
+    })
   }
 
   render() {
@@ -42,7 +61,7 @@ class BasicTable extends Component {
         dataIndex: 'name',
         key: 'name',
         render: (text, record, index) => {
-          console.log(text, record, index);
+          // console.log(text, record, index);
           return <a href='javascript: ;'>{text}</a>
         }
       },
