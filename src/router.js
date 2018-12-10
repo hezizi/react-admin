@@ -13,6 +13,8 @@ import Tab from './pages/ui/tabs'
 import Carousels from './pages/ui/carousels'
 import FormLogin from './pages/form/login'
 import FormRegister from './pages/form/register'
+import BasicTable from './pages/table/basic-table'
+import HighTable from './pages/table/high-table'
 import NoMatch from './pages/nomatch/index'
 
 class Router extends Component {
@@ -36,6 +38,8 @@ class Router extends Component {
                 <Route path='/admin/ui/carousels' component={Carousels} />
                 <Route path='/admin/form/login' component={FormLogin} />
                 <Route path='/admin/form/register' component={FormRegister} />
+                <Route path='/admin/table/basic' component={BasicTable} />
+                <Route path='/admin/table/high' component={HighTable} />
               </Admin>
             )} />
             <Route component={NoMatch} />
