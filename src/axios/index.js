@@ -1,4 +1,5 @@
 import Jsonp from 'jsonp'
+import axios from 'axios'
 
 export default class Axios {
   static jsonp(options) {
@@ -13,6 +14,12 @@ export default class Axios {
           reject(res.info)
         }
       })
+    })
+  }
+
+  static ajax(options) {
+    return new Promise((resolve, reject) => {
+
     })
   }
 }
