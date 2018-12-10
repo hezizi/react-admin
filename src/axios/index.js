@@ -7,7 +7,7 @@ export default class Axios {
       Jsonp(options.url, {
         param: 'callback'
       }, (err, res) => {
-        if(err) return;
+        if (err) return;
         if (res.status === '1') {
           resolve(res)
         } else {
