@@ -55,7 +55,11 @@ class FormRegister extends Component {
   handleSubmit = (e) => {
     e.preventDefault();
     let userInfo = this.props.form.getFieldsValue();
-    console.log(userInfo);
+    this.props.form.validateFields((err, value) => {
+      if (!err) {
+        message.info(`${userInfo.userName}注册成功`);
+      }
+    })
   };
 
   render() {
