@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-import { Card, Table } from 'antd'
+import { Card, Table, Modal, Button, message } from 'antd'
 import axios from '../../axios/index'
 
 class BasicTable extends Component {
@@ -11,7 +11,9 @@ class BasicTable extends Component {
   constructor(props) {
     super();
     this.state = {
-      dataSourceAjax: []
+      dataSourceAjax: [],
+      selectedRowKeys: [],
+      selectedRows: []
     }
   }
 
@@ -44,6 +46,34 @@ class BasicTable extends Component {
       this.setState({
         dataSourceAjax: res.result
       })
+    })
+  }
+
+  onRowClick = (record, index) => {
+    let selectKey = [index];
+    Modal.info({
+      title: '提示',
+      content: `${record.userName}`
+    });
+    this.setState({
+      selectedRowKeys: selectKey,
+      selectedItem: record
+    })
+  }
+
+  // 删除
+  handleDelete = () => {
+    let { selectedRows } = this.state;
+    let ids = [];
+    selectedRows.map(item => {
+      ids.push(item.id)
+    });
+    Modal.confirm({
+      title: '删除提示',
+      content: `确定删除选中项吗? ${ids.join(',')}`,
+      onOk: () => {
+        message.success('删除成功')
+      }
     })
   }
 
@@ -176,7 +206,25 @@ class BasicTable extends Component {
       }
     ];
 
-    const { dataSourceAjax } = this.state;
+    const { dataSourceAjax, selectedRowKeys } = this.state;
+    const rowSelection = {
+      type: 'radio',
+      selectedRowKeys,
+      onSelectAll: (selected, selectedRows, changeRows) => {
+        // console.log(selected, selectedRows, changeRows)
+      }
+    };
+
+    const rowCheckSelection = {
+      selectedRowKeys,
+      onChange: (selectedRowKeys, selectedRows) => {
+        this.setState({
+          selectedRowKeys,
+          selectedRows
+        })
+      }
+    }
+
     return (
       <div className="">
         <Card title="基础表格">
@@ -189,10 +237,39 @@ class BasicTable extends Component {
         </Card>
         <Card title="动态数据渲染表格-Mock">
           <Table 
-            columns={columns2}
-            dataSource={dataSourceAjax}
+            rowSelection = {rowSelection}
+            columns = {columns2}
+            dataSource = {dataSourceAjax}
             bordered
-            pagination={false}
+            pagination = {false}
+          />
+        </Card>
+        <Card title="动态数据渲染表格-Mock-单选">
+          <Table 
+            rowSelection = {rowSelection}
+            columns = {columns2}
+            dataSource = {dataSourceAjax}
+            onRow = {(record, index) => {
+              return {
+                onClick: () => {
+                  // Modal.info({
+                  //   title: '提示',
+                  //   content: record
+                  // })
+                  this.onRowClick(record, index);
+                }
+              }
+            }}
+            bordered
+          />
+        </Card>
+        <Card title="动态数据渲染表格-Mock-单选">
+          <Button onClick={this.handleDelete}>删除</Button>
+          <Table 
+            rowSelection = {rowCheckSelection}
+            columns = {columns2}
+            dataSource = {dataSourceAjax}
+            bordered
           />
         </Card>
       </div>
