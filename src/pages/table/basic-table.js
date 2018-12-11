@@ -1,7 +1,9 @@
 import React, { Component } from 'react'
 
 import { Card, Table, Modal, Button, message } from 'antd'
+
 import axios from '../../axios/index'
+import Utils from '../../utils/utils'
 
 class BasicTable extends Component {
   params = {
@@ -35,6 +37,7 @@ class BasicTable extends Component {
   //     })
   // }
   dataRequest = () => {
+    let _this = this;
     axios.ajax({
       url: '/table/list',
       data: {
@@ -43,9 +46,19 @@ class BasicTable extends Component {
         }
       }
     }).then(res => {
-      this.setState({
-        dataSourceAjax: res.result
-      })
+      console.log(res)
+      if (res.code === 0) {
+        this.setState({
+          dataSourceAjax: res.result.list,
+          pagination: Utils.pagination(res, (current) => {
+            _this.params.page = current;
+            this.dataRequest();
+          }),
+          // 删除成功后刷新页面清空状态
+          selectedRowKeys: [],
+          selectedRows: [],
+        })
+      }
     })
   }
 
@@ -72,7 +85,8 @@ class BasicTable extends Component {
       title: '删除提示',
       content: `确定删除选中项吗? ${ids.join(',')}`,
       onOk: () => {
-        message.success('删除成功')
+        message.success('删除成功');
+        this.dataRequest()
       }
     })
   }
@@ -206,7 +220,8 @@ class BasicTable extends Component {
       }
     ];
 
-    const { dataSourceAjax, selectedRowKeys } = this.state;
+    const { dataSourceAjax, selectedRowKeys, pagination } = this.state;
+    console.log(pagination)
     const rowSelection = {
       type: 'radio',
       selectedRowKeys,
@@ -269,6 +284,14 @@ class BasicTable extends Component {
             rowSelection = {rowCheckSelection}
             columns = {columns2}
             dataSource = {dataSourceAjax}
+            bordered
+          />
+        </Card>
+        <Card title="动态数据渲染表格-Mock-分页表格">
+          <Table 
+            columns = {columns2}
+            dataSource = {dataSourceAjax}
+            pagination = {pagination}
             bordered
           />
         </Card>

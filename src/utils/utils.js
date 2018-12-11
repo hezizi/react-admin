@@ -20,5 +20,21 @@ export default {
     return (
       `${getFullYear}-${getMonth + 1}-${getDate}  ${getHours}:${getMinutes}:${getSeconds}`
     )
+  },
+
+  pagination(data, callback) {
+    let page = {
+      onChange: (current) => {
+        callback(current)
+      },
+      current: data.result.page,
+      pageSize: data.result.page_size,
+      total: data.result.total,
+      showTotal: (total) => {
+        return `一共${total}条数据`
+      },
+      showQuickJumper: true
+    }
+    return page
   }
 }
