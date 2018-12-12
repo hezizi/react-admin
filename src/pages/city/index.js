@@ -35,13 +35,15 @@ class City extends Component {
         }
       }
     }).then(res => {
+      console.log(res);
       let list = res.result.item_list.map((item, index) => {
         item.key = index;
         return item;
       });
+      console.log(list)
 
       this.setState({
-        cityList: list,
+        cityList: res.result.item_list,
         pagination: Utils.pagination(res, (current) => {
           _this.params.page = current;
           _this.requestList();
@@ -87,7 +89,7 @@ class City extends Component {
       }, {
         title: '操作时间',
         dataIndex: 'update_time',
-        render: Utils.formateDate
+        // render: Utils.formateDate
       }, {
         title: '操作人',
         dataIndex: 'sys_user_name'
