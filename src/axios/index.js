@@ -20,7 +20,7 @@ export default class Axios {
   }
 
   static ajax(options) {
-    let baseApi = 'https://www.easy-mock.com/mock/5c0e5bb5dbf7436640a68ddf/mockapi';
+    let baseApi = 'https://www.easy-mock.com/mock/5a7278e28d0c633b9c4adbd7/api';
     return new Promise((resolve, reject) => {
       axios({
         url: options.url,

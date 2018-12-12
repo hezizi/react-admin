@@ -15,6 +15,7 @@ import FormLogin from './pages/form/login'
 import FormRegister from './pages/form/register'
 import BasicTable from './pages/table/basic-table'
 import HighTable from './pages/table/high-table'
+import City from './pages/city/index'
 import NoMatch from './pages/nomatch/index'
 
 class Router extends Component {
@@ -40,6 +41,7 @@ class Router extends Component {
                 <Route path='/admin/form/register' component={FormRegister} />
                 <Route path='/admin/table/basic' component={BasicTable} />
                 <Route path='/admin/table/high' component={HighTable} />
+                <Route path='/admin/city' component={City} />
               </Admin>
             )} />
             <Route component={NoMatch} />
